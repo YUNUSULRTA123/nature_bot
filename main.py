@@ -24,9 +24,13 @@ def send_image(message):
         data = res.json()
         return data['url']
     
-    
     @bot.message_handler(commands=['nature'])
     def nature(message):
         image_url = get_nature_image_url()
         bot.reply_to(message, image_url)
         bot.reply_to(message,f"Этот сайт нужно для картинок или презентаций про загрязнения окружающей среды")
+
+@bot.message_handler(commands=['open_info_about'])
+def send_info(message):   
+    with open('photo/info.png', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)  
